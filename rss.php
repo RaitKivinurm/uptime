@@ -32,7 +32,7 @@ for ($i = $x; $i < $numfeeds; $i++) {
     $category = $xml->channel->item[$i]->category;
     $description = $xml->channel->item[$i]->description;
 
-    if(!isset($image)){echo "";}
+//    if(!isset($image)){echo "";}
 
 // feed construction
     if (!$x++) echo $portitem;
@@ -45,7 +45,7 @@ for ($i = $x; $i < $numfeeds; $i++) {
                     <p>$pubDate, $author</p>
                     <a href='$link'><H2>$title</H2></a></div> <br>
                      <a href='$link'>
-                         <img class='img-responsive' src='$image[0]' alt=''>
+                         <img class='img-responsive' src='$image' alt=''>
                      </a>
                     <p>$description</p>
                     </p>
