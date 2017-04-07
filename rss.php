@@ -7,7 +7,6 @@
  */
 
 $x = 0;
-
 // get how many feeds are displayed
 if (!$_GET) {
     $numfeeds = 13;
@@ -18,11 +17,18 @@ if (!$_GET) {
 // feed information
 $html = "";
 $url = "https://flipboard.com/@raimoseero/feed-nii8kd0sz?rss";
-$xml = simplexml_load_file($url);
 for ($i = $x; $i < $numfeeds; $i++) {
     $portitem = "<div class='col-md-4 portfolio-item'>";
     if ($x <= 3) echo $portitem;
+
+    $xml = simplexml_load_file($url);
+    $xml->formatOutput = true;
     $image = $xml->channel->item[$i]->children('media', True)->content->attributes();
+
+    if($image == false){
+    $image = '        ';
+    $image = trim($image);}
+    if ($image !== '') 'images/banana.jpg';
 
     $title = $xml->channel->item[$i]->title;
     $link = $xml->channel->item[$i]->link;
@@ -32,9 +38,7 @@ for ($i = $x; $i < $numfeeds; $i++) {
     $category = $xml->channel->item[$i]->category;
     $description = $xml->channel->item[$i]->description;
 
-//    if(!isset($image)){echo "";}
 
-// feed construction
     if (!$x++) echo $portitem;
     if ($x % 4 == 0) echo $portitem;
     $html .= html_entity_decode("
